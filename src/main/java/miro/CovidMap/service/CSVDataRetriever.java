@@ -82,14 +82,15 @@ public class CSVDataRetriever {
 
         for(Punkt p: value)
         {
-            latitude += p.getLatitude();
-            longitude += p.getLongitude();
+            if (latitude == 0) latitude = p.getLatitude();
+            if (longitude == 0)  longitude =  p.getLongitude();
             sumOfConfirmed += p.getConfirmed();
             sumOfDailyGrowth += p.getDailyGrowth();
         }
 
-        latitude = latitude/count;
-        longitude = longitude/count;
+        //nie usredniam bo czesc krajow ma kolonie i wtedy wychadza dziwne sytuacje. Bedzie brany pierwszy rekord z bazy csv
+        //latitude = latitude/count;
+        //longitude = longitude/count;
 
         return new Punkt(latitude, longitude, sumOfDailyGrowth, sumOfConfirmed, key);
 
