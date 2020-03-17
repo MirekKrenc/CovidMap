@@ -2,6 +2,7 @@ package miro.CovidMap.controller;
 
 import miro.CovidMap.data.Punkt;
 import miro.CovidMap.service.CSVDataRetriever;
+import miro.CovidMap.service.CSVParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,7 +21,7 @@ public class ShowMap {
     private List<Punkt> punkty;
 
     @Autowired
-    public ShowMap(CSVDataRetriever punktyService) {
+    public ShowMap(CSVParser punktyService) {
         try {
             this.punkty = punktyService.getFormattedData();
         } catch (URISyntaxException e) {
